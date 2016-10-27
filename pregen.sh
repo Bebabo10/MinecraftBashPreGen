@@ -7,8 +7,10 @@ user=${4:-""}
 view=${5:-"8"}
 
 
-tpd=(($view/2)+1)*16
+tpd=$((($view/2)*16))
 
+per=$(($border*$border)/($tpd*$tpd))
+eta=$(((($border*$border)/($tpd*$tpd))*$delay))
 
 
 tmux send-keys -t $session 'gamemode '$user' 1' Enter
@@ -19,7 +21,7 @@ for (( r=$border; r>-$border ; r=r-$tpd )) do
                 tmux send-keys -t $session 'tppos '$user' '$r' 120 '$c' -f' Enter
 
                 sleep $delay
-
+                echo "ETA: '$eta' and '$per' \% done"
 
 
 
