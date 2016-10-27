@@ -5,6 +5,7 @@ delay=${2:-"10"}
 border=${3:-"1000"}
 user=${4:-""}
 
+tmux send-keys -t $session 'gamemode $user 1' Enter
 
 for (( r=$border; r>-$border ; r=r-16 )) do
 	for (( =$border; c>-$border ; c=r-16 )) do
