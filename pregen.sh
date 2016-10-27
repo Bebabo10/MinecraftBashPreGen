@@ -4,11 +4,17 @@ session=${1:-"0"}:0
 delay=${2:-"10"}
 border=${3:-"1000"}
 user=${4:-""}
+view=${5:-"8"}
+
+y=($view*16)
+tpd=($y+($y/2))
+
+
 
 tmux send-keys -t $session 'gamemode '$user' 1' Enter
 
-for (( r=$border; r>-$border ; r=r-16 )) do
-        for (( c=$border; c>-$border ; c=r-16 )) do
+for (( r=$border; r>-$border ; r=r-$tpd )) do
+        for (( c=$border; c>-$border ; c=r-$tpd )) do
 
                 tmux send-keys -t $session 'tppos '$user' '$r' 120 '$c' -f' Enter
 
